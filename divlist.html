@@ -38,6 +38,9 @@
 		<p>Type something then press the button to create an new element of type div and then add it to the container.</p>
 		<input id="addchild" type="text">
 		<button onclick="makeNewDiv()">Add end</button>
+		<br>
+		<button onclick="addFront()">Front</button>
+		<button onclick="remove()">Remove</button>
 	</body>
 <script>
 	function makeNewDiv(){
@@ -46,13 +49,33 @@
 		let newElement = document.getElementById("addchild").value
 
 		element.innerHTML = newElement
-		newElement.class = "divlist"
+		element.className = "divlist"
 		element.style.color = "orange"
 
 		/* add it to the container */
 		let container = document.getElementById('target')
 		container.appendChild(element)
 		
+	}
+
+	function remove(){
+		var divListItems = document.getElementsByClassName("divlist")
+
+		if(divListItems.length > 0){
+			divListItems[Math.floor(divListItems.length/2)].remove()
+		}
+	}
+
+	function addFront(){
+		let element = document.createElement("div")
+		let newElement = document.getElementById("addchild").value
+
+		element.innerHTML = newElement
+		element.className = "divlist"
+		element.style.color = "blue"
+
+		let target = document.getElementById("target")
+		target.insertBefore(element, target.firstChild)
 	}
 </script>
 </html>	
